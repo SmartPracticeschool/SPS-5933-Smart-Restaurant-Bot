@@ -1,0 +1,775 @@
+{
+  "intents": [
+    {
+      "intent": "Enquiry",
+      "examples": [
+        {
+          "text": "Exclusive JAYADH restaurant specials"
+        },
+        {
+          "text": "Menu please"
+        },
+        {
+          "text": "Offers today"
+        },
+        {
+          "text": "specials of the day"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greetings",
+      "examples": [
+        {
+          "text": "GM"
+        },
+        {
+          "text": "Good Afternoon"
+        },
+        {
+          "text": "Good Evening"
+        },
+        {
+          "text": "Good morning"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        }
+      ],
+      "description": "Welcome Note to the Customers"
+    },
+    {
+      "intent": "Order",
+      "examples": [
+        {
+          "text": "My order"
+        },
+        {
+          "text": "Take my Order"
+        }
+      ],
+      "description": "Take Orders"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Email",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "email",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Enquiry",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Menu Please",
+          "synonyms": [
+            "Menu"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "offers",
+          "synonyms": [
+            "Deals",
+            "Discounts"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Special Items for the day",
+          "synonyms": [
+            "Specials"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Specials of JAYADH restaurant",
+          "synonyms": [
+            "Specials in restaurant"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Greetings",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Good Afternoon",
+          "synonyms": [
+            "GF"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Morning",
+          "synonyms": [
+            "GM",
+            "Good Morning"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Hai",
+          "synonyms": [
+            "Hi"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Menu",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Chicken Biriyani",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Chicken Dum Biriyani",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Order",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Order",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Payment",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Card",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "COD",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Gpay",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Internet Banking",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "SpecialItems",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Chicken Biriyani",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Chicken Fried Wings",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Double kaa meeta",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Gulabjamun With Vanila Icecream",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Paneer Tikka Biriyani",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Ulavacharu Biriyani",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_2_1602840909210",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1602841650704",
+      "context": {
+        "Payment": "@Payment"
+      },
+      "conditions": "@Payment",
+      "event_name": "input",
+      "dialog_node": "handler_10_1602841650705"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_2_1602840909210",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1602841094184",
+      "previous_sibling": "slot_8_1602841650704"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Numbers items to be ordered"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_7_1602841600957",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1602841600958",
+      "previous_sibling": "handler_8_1602841600958"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1602841405037",
+      "context": {
+        "Menu": "@Menu"
+      },
+      "conditions": "@Menu",
+      "event_name": "input",
+      "dialog_node": "handler_7_1602841405039"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Please place your order"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_3_1602841405037",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1602841405039",
+      "previous_sibling": "handler_7_1602841405039"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1602841600957",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_8_1602841600958"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We prefer COD,Internet banking, GPAY  in this Pandamic Situations"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_8_1602841650704",
+      "event_name": "focus",
+      "dialog_node": "handler_9_1602841650705",
+      "previous_sibling": "handler_10_1602841650705"
+    },
+    {
+      "type": "standard",
+      "title": "Specials",
+      "parent": "node_6_1602068515685",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@SpecialItems",
+      "dialog_node": "node_10_1602912282092"
+    },
+    {
+      "type": "standard",
+      "title": "Email",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank you for providing your Email  $Email your mailid will be used for sending your order details and bill"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "@Email",
+      "dialog_node": "node_10_1602912883493"
+    },
+    {
+      "type": "frame",
+      "title": "Order",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#Order && @Order",
+      "dialog_node": "node_2_1602840909210",
+      "previous_sibling": "node_6_1602068515685"
+    },
+    {
+      "type": "standard",
+      "title": "Greetings",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Greetings && @Greetings",
+      "dialog_node": "node_6_1602067700006",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Enquiry",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Enquiry && @Enquiry",
+      "dialog_node": "node_6_1602068515685",
+      "previous_sibling": "node_6_1602067700006"
+    },
+    {
+      "type": "standard",
+      "title": "Deleting Context",
+      "output": {
+        "deleted": "<?context.remove('items')?><?context.remove('number')?><?context.remove('payment')?> <?context.remove('email')?>",
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1602840909210",
+      "conditions": "true",
+      "dialog_node": "node_8_1602912735427"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "source": "https://i.postimg.cc/6pG9gR3r/index.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "parent": "node_6_1602068515685",
+      "conditions": "@Enquiry:(Menu Please)",
+      "dialog_node": "response_10_1602840181857",
+      "previous_sibling": "response_9_1602840066569"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "Special Items ",
+            "options": [
+              {
+                "label": "Paneer Tikka Biriyani",
+                "value": {
+                  "input": {
+                    "text": "Paneer Tikka Biriyani"
+                  }
+                }
+              },
+              {
+                "label": "Gulabjamun with Vanila Ice cream",
+                "value": {
+                  "input": {
+                    "text": "Gulabjamun with Vanila Ice cream"
+                  }
+                }
+              },
+              {
+                "label": "Double kaa meeta",
+                "value": {
+                  "input": {
+                    "text": "Double kaa meeta"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_6_1602068515685",
+      "conditions": "@Enquiry:(Special Items for the day)",
+      "dialog_node": "response_10_1602840312936",
+      "previous_sibling": "response_10_1602840181857"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Natukodi Iguru, Ulavacharu Biriyani, Avakay Biriyni"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1602068515685",
+      "conditions": "@Enquiry:(Specials of JAYADH restaurant)",
+      "dialog_node": "response_3_1602840347659",
+      "previous_sibling": "response_10_1602840312936"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "350/-"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1602912282092",
+      "conditions": "@SpecialItems:(Chicken Biriyani)",
+      "dialog_node": "response_3_1602912340201"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "420/-"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1602912282092",
+      "conditions": "@SpecialItems:(Ulavacharu Biriyani)",
+      "dialog_node": "response_3_1602912397890",
+      "previous_sibling": "response_4_1602912379258"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "320/-"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1602912282092",
+      "conditions": "@SpecialItems:(Paneer Tikka Biriyani)",
+      "dialog_node": "response_4_1602912379258",
+      "previous_sibling": "response_3_1602912340201"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You are Welcome"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1602067700006",
+      "conditions": "@Greetings:(Good Morning)",
+      "dialog_node": "response_5_1602067842208"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "220/-"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1602912282092",
+      "conditions": "@SpecialItems:(Double kaa meeta)",
+      "dialog_node": "response_5_1602912497539",
+      "previous_sibling": "response_9_1602912412281"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1602840909210",
+      "disabled": true,
+      "dialog_node": "response_6_1602841073048",
+      "previous_sibling": "handler_1_1602841094184"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Very Good Afternoon "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1602067700006",
+      "conditions": "@Greetings:(Good Afternoon)",
+      "dialog_node": "response_7_1602068022367",
+      "previous_sibling": "response_5_1602067842208"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "20% Discount on all Nonveg Items"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1602068515685",
+      "conditions": "@Enquiry:offers",
+      "dialog_node": "response_9_1602840066569",
+      "previous_sibling": "node_10_1602912282092"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "450/- per plate(4 wings)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1602912282092",
+      "conditions": "@SpecialItems:(Chicken Fried Wings)",
+      "dialog_node": "response_9_1602912412281",
+      "previous_sibling": "response_3_1602912397890"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1602840909210",
+      "variable": "$Menu",
+      "dialog_node": "slot_3_1602841405037",
+      "previous_sibling": "node_8_1602912735427"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1602840909210",
+      "variable": "$number",
+      "dialog_node": "slot_7_1602841600957",
+      "previous_sibling": "slot_3_1602841405037"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1602840909210",
+      "variable": "$Payment",
+      "dialog_node": "slot_8_1602841650704",
+      "previous_sibling": "slot_7_1602841600957"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello I am JAYADH Restaurant Bot. I can take the orders from you and can serve you as per your need"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
